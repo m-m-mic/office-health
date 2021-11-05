@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="/img-folder/1_stripe_logo.png" />
-</p>
+![TEAM 10 Banner](/img-folder/1_stripe_logo.png)
 <br>
 ## GitHub Classroom des Informatik & Design Team 10
 
