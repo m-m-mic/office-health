@@ -1,0 +1,158 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "office health",
+      "intents": [
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "runtime",
+          "slots": [
+            {
+              "name": "work_time",
+              "type": "AMAZON.DURATION"
+            }
+          ],
+          "samples": [
+            "ich will heute {work_time} lang arbeiten",
+            "ich arbeite {work_time}",
+            "{work_time}",
+            "ich arbeite heute für {work_time}",
+            "für {work_time} "
+          ]
+        },
+        {
+          "name": "intervals",
+          "slots": [
+            {
+              "name": "break_amount",
+              "type": "AMAZON.NUMBER"
+            },
+            {
+              "name": "break_intervals",
+              "type": "AMAZON.DURATION"
+            }
+          ],
+          "samples": [
+            "jede {break_intervals}",
+            "alle {break_intervals}",
+            "{break_amount} mal bitte",
+            "{break_intervals} ",
+            "{break_amount} mal"
+          ]
+        },
+        {
+          "name": "final_confirmation",
+          "slots": [],
+          "samples": [
+            "Ich bin bereit",
+            "Ja"
+          ]
+        },
+        {
+          "name": "workout_ready",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "exercise_ready",
+          "slots": [],
+          "samples": []
+        },
+        {
+          "name": "next_exercise_ready",
+          "slots": [],
+          "samples": []
+        }
+      ],
+      "types": []
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "runtime",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.1631468715880"
+          },
+          "slots": [
+            {
+              "name": "work_time",
+              "type": "AMAZON.DURATION",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            }
+          ]
+        },
+        {
+          "name": "intervals",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.819241000116"
+          },
+          "slots": [
+            {
+              "name": "break_amount",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            },
+            {
+              "name": "break_intervals",
+              "type": "AMAZON.DURATION",
+              "elicitationRequired": false,
+              "confirmationRequired": false,
+              "prompts": {}
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Confirm.Intent.1631468715880",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Für {work_time} also. Stimmt das?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.819241000116",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "{break_amount} mal Pause also. Stimmt das?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Alle {break_intervals} also. Stimmt das?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "3"
+}
