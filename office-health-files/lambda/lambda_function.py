@@ -50,7 +50,7 @@ class runtimeHandler(AbstractRequestHandler):
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                #.ask("Okay, wie viel Stunden möchtest du also arbeiten?")
                 .response
         )
 
@@ -62,12 +62,114 @@ class intervalsHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Sind Sie bereit?"
+        speak_output = "Wenn ja, dann sag einfach: Los."
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                # .ask("add a reprompt if you want to keep the session open for the user to respond")
+                #.ask("Wie viele Pausen möchtest du also nehmen?")
+                .response
+        )
+
+class final_confirmationHandler(AbstractRequestHandler):
+    """Handler for final_confirmation Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("final_confirmation")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class workout_readyHandler(AbstractRequestHandler):
+    """Handler for workout_ready Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("workout_ready")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Deine nächste Übung heißt Hampelmänner. (Hier Hampelmänner Übungsanleitung einfügen) Wir wiederholen die Übung 15 mal. Soll ich die Anleitung wiederholen oder kann es los gehen?"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class exercise_readyHandler(AbstractRequestHandler):
+    """Handler for exercise_ready Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("exercise_ready")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause). Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class HealthBreakFinishHandler(AbstractRequestHandler):
+    """Handler for HealthBreakFinish Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("HealthBreakFinish")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Du hast deine Health Break geschafft!"
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class BackToWorkHandler(AbstractRequestHandler):
+    """Handler for BackToWork Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("BackToWork")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Du hast jetzt 1 Minute lang Zeit, dich zu erholen, bevor es weiter an die Arbeit geht. (1 Minute Pause hier einfügen) Ich melde mich bald wieder."
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .response
+        )
+
+class CompleteFinishHandler(AbstractRequestHandler):
+    """Handler for CompleteFinish Intent."""
+    def can_handle(self, handler_input):
+        # type: (HandlerInput) -> bool
+        return ask_utils.is_intent_name("CompleteFinish")(handler_input)
+
+    def handle(self, handler_input):
+        # type: (HandlerInput) -> Response
+        speak_output = "Das wars für heute! Super, dass Du mitgemacht hast."
+
+        return (
+            handler_input.response_builder
+                .speak(speak_output)
+                #.ask("add a reprompt if you want to keep the session open for the user to respond")
                 .response
         )
 
@@ -189,6 +291,12 @@ sb = SkillBuilder()
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(runtimeHandler())
 sb.add_request_handler(intervalsHandler())
+sb.add_request_handler(final_confirmationHandler())
+sb.add_request_handler(workout_readyHandler())
+sb.add_request_handler(exercise_readyHandler())
+sb.add_request_handler(HealthBreakFinishHandler())
+sb.add_request_handler(BackToWorkHandler())
+sb.add_request_handler(CompleteFinishHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())
