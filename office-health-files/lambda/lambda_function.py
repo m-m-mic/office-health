@@ -7,16 +7,26 @@
 import logging
 import ask_sdk_core.utils as ask_utils
 
-from ask_sdk_core.skill_builder import SkillBuilder
+import os
+import boto3
+
+from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
 from ask_sdk_model import Response
 
+from ask_sdk_dynamodb.adapter import DynamoDbAdapter
+
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
+ddb_region = os.environ.get('DYNAMODB_PERSISTENCE_REGION')
+ddb_table_name = os.environ.get('DYNAMODB_PERSISTENCE_TABLE_NAME')
+
+ddb_resource = boto3.resource('dynamodb', region_name=ddb_region)
+dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=False, dynamodb_resource=ddb_resource)
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -27,6 +37,20 @@ class LaunchRequestHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
+        
+        attr = handler_input.attributes_manager.persistent_attributes
+        if not attr:
+            #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
+            #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
+            #workintervt: dauer der arbeits intervalle
+            attr['exercisenum'] = 0
+            attr['worktime'] = 0
+            attr['breaks'] = 0 
+            attr['breaknum'] = 0
+            attr['workintervt'] = 0
+            
+            handler_input.attributes_manager.save_persistent_attributes()
+        
         speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
 
         return (
@@ -113,8 +137,28 @@ class exercise_readyHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause). Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
+        
+        attr = handler_input.attributes_manager.persistent_attributes
+        outp = ""
+        if not attr:
+            attr['exercisenum'] = 0
+        attr['exercisenum'] += 1
+        
+        outp = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause)." #" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
 
+        if attr['exercisenum'] < 3:
+            if attr['exercisenum'] == 1:
+                outp += ("Die erste Übung hast du geschafft, wenn du bereitfür die Nächste bist sag Bescheid")
+            else:
+                outp += ("Super. noch Eine. Sag wieder wenn du bereit bist")
+        else:
+            outp += ("So das wars erstmal. jetzt erstmal zurück zur arbeit. sag los wenn du beginnst zu arbeiten")
+            attr['exercisenum'] = 0
+            
+        handler_input.attributes_manager.save_persistent_attributes()
+        
+        speak_output = outp
+        
         return (
             handler_input.response_builder
                 .speak(speak_output)
@@ -286,7 +330,7 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 # defined are included below. The order matters - they're processed top to bottom.
 
 
-sb = SkillBuilder()
+sb = CustomSkillBuilder()
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(runtimeHandler())
