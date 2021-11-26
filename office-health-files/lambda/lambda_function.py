@@ -15,9 +15,12 @@ from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
 
+
+
 from ask_sdk_model import Response
 
 from ask_sdk_dynamodb.adapter import DynamoDbAdapter
+
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -27,6 +30,7 @@ ddb_table_name = os.environ.get('DYNAMODB_PERSISTENCE_TABLE_NAME')
 
 ddb_resource = boto3.resource('dynamodb', region_name=ddb_region)
 dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=False, dynamodb_resource=ddb_resource)
+
 
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
@@ -38,21 +42,21 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-        attr = handler_input.attributes_manager.persistent_attributes
-        
-            #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
-            #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
-            #workintervt: dauer der arbeits intervalle
-         attr['exercisenum'] = 0
-         attr['worktime'] = 0
-         attr['breaks'] = 0 
-         attr['breaknum'] = 0
-         attr['workintervt'] = 0
-            
-         handler_input.attributes_manager.save_persistent_attributes()
-        
-        speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
 
+        attr = handler_input.attributes_manager.persistent_attributes
+        #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
+        #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
+        #workintervt: dauer der arbeits intervalle
+        attr['exercisenum'] = 0
+        attr['worktime'] = 0
+        attr['breaks'] = 0 
+        attr['breaknum'] = 0
+        attr['workintervt'] = 0
+        
+        handler_input.attributes_manager.save_persistent_attributes()
+            
+        speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
+        
         return (
             handler_input.response_builder
                 .speak(speak_output)
@@ -95,11 +99,11 @@ class intervalsHandler(AbstractRequestHandler):
                 .response
         )
 
-class final_confirmationHandler(AbstractRequestHandler):
-    """Handler for final_confirmation Intent."""
+class session_initHandler(AbstractRequestHandler):
+    """Handler for session_init Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("final_confirmation")(handler_input)
+        return ask_utils.is_intent_name("session_init")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -112,11 +116,11 @@ class final_confirmationHandler(AbstractRequestHandler):
                 .response
         )
 
-class workout_readyHandler(AbstractRequestHandler):
-    """Handler for workout_ready Intent."""
+class workout_explanationHandler(AbstractRequestHandler):
+    """Handler for workout_explanation Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("workout_ready")(handler_input)
+        return ask_utils.is_intent_name("workout_explanation")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -129,22 +133,21 @@ class workout_readyHandler(AbstractRequestHandler):
                 .response
         )
 
-class exercise_readyHandler(AbstractRequestHandler):
-    """Handler for exercise_ready Intent."""
+class workout_initHandler(AbstractRequestHandler):
+    """Handler for workout_init Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("exercise_ready")(handler_input)
+        return ask_utils.is_intent_name("workout_init")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        
         attr = handler_input.attributes_manager.persistent_attributes
         outp = ""
         if not attr:
             attr['exercisenum'] = 0
         attr['exercisenum'] += 1
         
-        outp = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause)." #" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
+        outp = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause)."#" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
 
         if attr['exercisenum'] < 3:
             if attr['exercisenum'] == 1:
@@ -157,6 +160,7 @@ class exercise_readyHandler(AbstractRequestHandler):
             
         handler_input.attributes_manager.save_persistent_attributes()
         
+        #testing
         speak_output = outp
         
         return (
@@ -166,11 +170,11 @@ class exercise_readyHandler(AbstractRequestHandler):
                 .response
         )
 
-class HealthBreakFinishHandler(AbstractRequestHandler):
-    """Handler for HealthBreakFinish Intent."""
+class workout_finishHandler(AbstractRequestHandler):
+    """Handler for workout_finish Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("HealthBreakFinish")(handler_input)
+        return ask_utils.is_intent_name("workout_finish")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -200,11 +204,11 @@ class BackToWorkHandler(AbstractRequestHandler):
                 .response
         )
 
-class CompleteFinishHandler(AbstractRequestHandler):
-    """Handler for CompleteFinish Intent."""
+class session_finishHandler(AbstractRequestHandler):
+    """Handler for session_finish Intent."""
     def can_handle(self, handler_input):
         # type: (HandlerInput) -> bool
-        return ask_utils.is_intent_name("CompleteFinish")(handler_input)
+        return ask_utils.is_intent_name("session_finish")(handler_input)
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
@@ -330,17 +334,18 @@ class CatchAllExceptionHandler(AbstractExceptionHandler):
 # defined are included below. The order matters - they're processed top to bottom.
 
 
-sb = CustomSkillBuilder()
+sb = CustomSkillBuilder(persistence_adapter = dynamodb_adapter)
+
 
 sb.add_request_handler(LaunchRequestHandler())
 sb.add_request_handler(runtimeHandler())
 sb.add_request_handler(intervalsHandler())
-sb.add_request_handler(final_confirmationHandler())
-sb.add_request_handler(workout_readyHandler())
-sb.add_request_handler(exercise_readyHandler())
-sb.add_request_handler(HealthBreakFinishHandler())
+sb.add_request_handler(session_initHandler())
+sb.add_request_handler(workout_explanationHandler())
+sb.add_request_handler(workout_initHandler())
+sb.add_request_handler(workout_finishHandler())
 sb.add_request_handler(BackToWorkHandler())
-sb.add_request_handler(CompleteFinishHandler())
+sb.add_request_handler(session_finishHandler())
 sb.add_request_handler(HelpIntentHandler())
 sb.add_request_handler(CancelOrStopIntentHandler())
 sb.add_request_handler(FallbackIntentHandler())

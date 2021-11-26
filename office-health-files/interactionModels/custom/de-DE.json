@@ -1,374 +1,388 @@
 {
   "interactionModel": {
-    "languageModel": {
-      "invocationName": "office health",
-      "intents": [
-        {
-          "name": "AMAZON.CancelIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.HelpIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.StopIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.NavigateHomeIntent",
-          "samples": []
-        },
-        {
-          "name": "AMAZON.FallbackIntent",
-          "samples": []
-        },
-        {
-          "name": "runtime",
-          "slots": [
-            {
-              "name": "work_time",
-              "type": "AMAZON.DURATION"
-            }
+      "languageModel": {
+          "invocationName": "office health",
+          "intents": [
+              {
+                  "name": "AMAZON.CancelIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.HelpIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.StopIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.NavigateHomeIntent",
+                  "samples": []
+              },
+              {
+                  "name": "AMAZON.FallbackIntent",
+                  "samples": []
+              },
+              {
+                  "name": "runtime",
+                  "slots": [
+                      {
+                          "name": "work_time",
+                          "type": "AMAZON.DURATION"
+                      }
+                  ],
+                  "samples": [
+                      "ich will heute {work_time} lang arbeiten",
+                      "ich arbeite {work_time}",
+                      "{work_time}",
+                      "ich arbeite heute für {work_time}",
+                      "für {work_time} ",
+                      "Für {work_time}",
+                      "Ich will heute {work_time} arbeiten",
+                      "Ich will jetzt {work_time} arbeiten",
+                      "Ich werde jetzt {work_time} arbeiten",
+                      "Ich werde heute {work_time} arbeiten",
+                      "{work_time} arbeiten",
+                      "{work_time}",
+                      "Ich arbeite heute {work_time}",
+                      "Ich arbeite heute {work_time} lang",
+                      "{work_time} lang",
+                      "Ich möchte jetzt {work_time} arbeiten",
+                      "Ich möchte heute {work_time} arbeiten",
+                      "Ich habe für heute {work_time} Arbeitszeit eingeplant",
+                      "Ich habe {work_time} Arbeitszeit eingeplant",
+                      "Ich habe vor heute {work_time} zu arbeiten",
+                      "Ich will jetzt {work_time} produktiv sein",
+                      "Ich will heute {work_time} produktiv sein",
+                      "Ich werde jetzt {work_time} produktiv sein",
+                      "Ich werde heute {work_time} produktiv sein",
+                      "{work_time} produktiv sein",
+                      "Ich möchte jetzt {work_time} produktiv sein",
+                      "Ich möchte heute {work_time} produktiv sein"
+                  ]
+              },
+              {
+                  "name": "intervals",
+                  "slots": [
+                      {
+                          "name": "break_amount",
+                          "type": "AMAZON.NUMBER"
+                      },
+                      {
+                          "name": "break_intervals",
+                          "type": "AMAZON.DURATION"
+                      },
+                      {
+                          "name": "work_time",
+                          "type": "AMAZON.DURATION"
+                      }
+                  ],
+                  "samples": [
+                      "{break_amount} Mal",
+                      "{break_amount}",
+                      "Ich will mir {break_amount} Health Breaks gönnen",
+                      "Ich will mir {break_amount} Pausen gönnen",
+                      "Ich möchte mir {break_amount} Health Breaks gönnen",
+                      "Ich möchte mir {break_amount} Pausen gönnen",
+                      "Ich will mir {break_amount} Health Breaks nehmen",
+                      "Ich will mir {break_amount} Pausen nehmen",
+                      "Ich möchte mir {break_amount} Health Breaks nehmen",
+                      "Ich möchte mir {break_amount} Pausen nehmen",
+                      "Ich will mir {break_amount} Health Breaks genehmigen",
+                      "Ich will mir {break_amount} Pausen genehmigen",
+                      "Ich möchte mir {break_amount} Health Breaks genehmigen",
+                      "Ich möchte mir {break_amount} Pausen genehmigen",
+                      "Ich will {break_amount} Health Breaks einlegen",
+                      "Ich will {break_amount} Pausen einlegen",
+                      "Ich möchte {break_amount} Health Breaks einlegen",
+                      "Ich möchte {break_amount} Pausen einlegen",
+                      "{break_amount} Health Breaks",
+                      "{break_amount} Pausen",
+                      "{break_amount} Stück",
+                      "Ich möchte {break_amount} Pausen",
+                      "Ich will {break_amount} Pausen",
+                      "Ich will mir {break_amount} Health Breaks einplanen",
+                      "Ich will mir {break_amount} Pausen einplanen",
+                      "Ich möchte mir {break_amount} Health Breaks einplanen",
+                      "Ich möchte mir {break_amount} Pausen einplanen",
+                      "{break_amount} gönnen",
+                      "{break_amount} einplanen",
+                      "{break_amount} genehmigen",
+                      "{break_amount} nehmen",
+                      "Alle {break_intervals}",
+                      "Ich will alle {break_intervals} eine Health Break nehmen",
+                      "Ich möchte alle {break_intervals} eine Health Break nehmen",
+                      "Ich will mir alle {break_intervals} eine Health Break genehmigen",
+                      "Ich möchte mir alle {break_intervals} eine Health Break genehmigen",
+                      "Ich will mir alle {break_intervals} eine Health Break gönnen",
+                      "Ich möchte mir alle {break_intervals} eine Health Break gönnen",
+                      "Ich will alle {break_intervals} eine Pause machen",
+                      "Ich möchte alle {break_intervals} eine Pause machen",
+                      "Alle {break_intervals} eine Pause",
+                      "Alle {break_intervals} eine Health Break",
+                      "Ich möchte meine Arbeitszeit in {break_amount} Intervalle unterteilen",
+                      "jede {break_intervals}",
+                      "alle {break_intervals}",
+                      "{break_amount} mal bitte",
+                      "{break_intervals} ",
+                      "{break_amount} mal"
+                  ]
+              },
+              {
+                  "name": "session_init",
+                  "slots": [],
+                  "samples": [
+                      "Los"
+                  ]
+              },
+              {
+                  "name": "workout_explanation",
+                  "slots": [],
+                  "samples": [
+                      "ich bin bereit",
+                      "Ich habe die Anleitung nicht verstanden",
+                      "Wiederholen",
+                      "Bitte wiederhole die Anleitung",
+                      "Anleitung wiederholen",
+                      "Kannst Du die Anleitung wiederholen",
+                      "Ich habe es nicht verstanden",
+                      "Ich hab sie nicht verstanden",
+                      "Nächste Übung"
+                  ]
+              },
+              {
+                  "name": "workout_init",
+                  "slots": [],
+                  "samples": [
+                      "ready",
+                      "Es kann losgehen",
+                      "Habs verstanden",
+                      "Verstanden",
+                      "Ich habe die Anleitung verstanden",
+                      "Ich habe Dich verstanden",
+                      "Habe sie verstanden",
+                      "Habe es verstanden",
+                      "Weiter",
+                      "Es kann weiter gehen",
+                      "Kapiert",
+                      "Geschnallt",
+                      "Ich habs gerafft",
+                      "Ich habs verstanden",
+                      "Ich habs geschnallt",
+                      "Ich habs kapiert",
+                      "Ich will weiter machen",
+                      "Ich will anfangen",
+                      "Ich möchte anfangen",
+                      "Ich möchte weiter machen"
+                  ]
+              },
+              {
+                  "name": "workout_transition",
+                  "slots": [],
+                  "samples": [
+                      "Mehr Pause",
+                      "mehr",
+                      "Passt",
+                      "Passt so",
+                      "Mehr zeit",
+                      "Ich will mehr Zeit haben",
+                      "Ich brauche mehr Zeit",
+                      "Ich brauche eine längere Pause",
+                      "Passt für mich",
+                      "Das passt so"
+                  ]
+              },
+              {
+                  "name": "dismissal",
+                  "slots": [],
+                  "samples": [
+                      "Tschüssi",
+                      "Bye",
+                      "Byebye",
+                      "Auf wiedersehen",
+                      "Bis bald",
+                      "Bis morgen"
+                  ]
+              },
+              {
+                  "name": "workout_finish",
+                  "slots": [],
+                  "samples": [
+                      "healthbreakfinish",
+                      "Health Break fertig"
+                  ]
+              },
+              {
+                  "name": "BackToWork",
+                  "slots": [],
+                  "samples": [
+                      "backtowork",
+                      "arbeitszeit übrig"
+                  ]
+              },
+              {
+                  "name": "session_finish",
+                  "slots": [],
+                  "samples": [
+                      "completefinish"
+                  ]
+              }
           ],
-          "samples": [
-            "ich will heute {work_time} lang arbeiten",
-            "ich arbeite {work_time}",
-            "{work_time}",
-            "ich arbeite heute für {work_time}",
-            "für {work_time} ",
-            "Für {work_time}",
-            "Ich will heute {work_time} arbeiten",
-            "Ich will jetzt {work_time} arbeiten",
-            "Ich werde jetzt {work_time} arbeiten",
-            "Ich werde heute {work_time} arbeiten",
-            "{work_time} arbeiten",
-            "{work_time}",
-            "Ich arbeite heute {work_time}",
-            "Ich arbeite heute {work_time} lang",
-            "{work_time} lang",
-            "Ich möchte jetzt {work_time} arbeiten",
-            "Ich möchte heute {work_time} arbeiten",
-            "Ich habe für heute {work_time} Arbeitszeit eingeplant",
-            "Ich habe {work_time} Arbeitszeit eingeplant",
-            "Ich habe vor heute {work_time} zu arbeiten",
-            "Ich will jetzt {work_time} produktiv sein",
-            "Ich will heute {work_time} produktiv sein",
-            "Ich werde jetzt {work_time} produktiv sein",
-            "Ich werde heute {work_time} produktiv sein",
-            "{work_time} produktiv sein",
-            "Ich möchte jetzt {work_time} produktiv sein",
-            "Ich möchte heute {work_time} produktiv sein"
-          ]
-        },
-        {
-          "name": "intervals",
-          "slots": [
-            {
-              "name": "break_amount",
-              "type": "AMAZON.NUMBER"
-            },
-            {
-              "name": "break_intervals",
-              "type": "AMAZON.DURATION"
-            },
-            {
-              "name": "work_time",
-              "type": "AMAZON.DURATION"
-            }
-          ],
-          "samples": [
-            "{break_amount} Mal",
-            "{break_amount}",
-            "Ich will mir {break_amount} Health Breaks gönnen",
-            "Ich will mir {break_amount} Pausen gönnen",
-            "Ich möchte mir {break_amount} Health Breaks gönnen",
-            "Ich möchte mir {break_amount} Pausen gönnen",
-            "Ich will mir {break_amount} Health Breaks nehmen",
-            "Ich will mir {break_amount} Pausen nehmen",
-            "Ich möchte mir {break_amount} Health Breaks nehmen",
-            "Ich möchte mir {break_amount} Pausen nehmen",
-            "Ich will mir {break_amount} Health Breaks genehmigen",
-            "Ich will mir {break_amount} Pausen genehmigen",
-            "Ich möchte mir {break_amount} Health Breaks genehmigen",
-            "Ich möchte mir {break_amount} Pausen genehmigen",
-            "Ich will {break_amount} Health Breaks einlegen",
-            "Ich will {break_amount} Pausen einlegen",
-            "Ich möchte {break_amount} Health Breaks einlegen",
-            "Ich möchte {break_amount} Pausen einlegen",
-            "{break_amount} Health Breaks",
-            "{break_amount} Pausen",
-            "{break_amount} Stück",
-            "Ich möchte {break_amount} Pausen",
-            "Ich will {break_amount} Pausen",
-            "Ich will mir {break_amount} Health Breaks einplanen",
-            "Ich will mir {break_amount} Pausen einplanen",
-            "Ich möchte mir {break_amount} Health Breaks einplanen",
-            "Ich möchte mir {break_amount} Pausen einplanen",
-            "{break_amount} gönnen",
-            "{break_amount} einplanen",
-            "{break_amount} genehmigen",
-            "{break_amount} nehmen",
-            "Alle {break_intervals}",
-            "Ich will alle {break_intervals} eine Health Break nehmen",
-            "Ich möchte alle {break_intervals} eine Health Break nehmen",
-            "Ich will mir alle {break_intervals} eine Health Break genehmigen",
-            "Ich möchte mir alle {break_intervals} eine Health Break genehmigen",
-            "Ich will mir alle {break_intervals} eine Health Break gönnen",
-            "Ich möchte mir alle {break_intervals} eine Health Break gönnen",
-            "Ich will alle {break_intervals} eine Pause machen",
-            "Ich möchte alle {break_intervals} eine Pause machen",
-            "Alle {break_intervals} eine Pause",
-            "Alle {break_intervals} eine Health Break",
-            "Ich möchte meine Arbeitszeit in {break_amount} Intervalle unterteilen",
-            "jede {break_intervals}",
-            "alle {break_intervals}",
-            "{break_amount} mal bitte",
-            "{break_intervals} ",
-            "{break_amount} mal"
-          ]
-        },
-        {
-          "name": "final_confirmation",
-          "slots": [],
-          "samples": [
-            "Los"
-          ]
-        },
-        {
-          "name": "workout_ready",
-          "slots": [],
-          "samples": [
-            "ich bin bereit",
-            "Ich habe die Anleitung nicht verstanden",
-            "Wiederholen",
-            "Bitte wiederhole die Anleitung",
-            "Anleitung wiederholen",
-            "Kannst Du die Anleitung wiederholen",
-            "Ich habe es nicht verstanden",
-            "Ich hab sie nicht verstanden",
-            "Nächste Übung"
-          ]
-        },
-        {
-          "name": "exercise_ready",
-          "slots": [],
-          "samples": [
-            "ready",
-            "Es kann losgehen",
-            "Habs verstanden",
-            "Verstanden",
-            "Ich habe die Anleitung verstanden",
-            "Ich habe Dich verstanden",
-            "Habe sie verstanden",
-            "Habe es verstanden",
-            "Weiter",
-            "Es kann weiter gehen",
-            "Kapiert",
-            "Geschnallt",
-            "Ich habs gerafft",
-            "Ich habs verstanden",
-            "Ich habs geschnallt",
-            "Ich habs kapiert",
-            "Ich will weiter machen",
-            "Ich will anfangen",
-            "Ich möchte anfangen",
-            "Ich möchte weiter machen"
-          ]
-        },
-        {
-          "name": "more_break",
-          "slots": [],
-          "samples": [
-            "Mehr Pause",
-            "mehr",
-            "Passt",
-            "Passt so",
-            "Mehr zeit",
-            "Ich will mehr Zeit haben",
-            "Ich brauche mehr Zeit",
-            "Ich brauche eine längere Pause",
-            "Passt für mich",
-            "Das passt so"
-          ]
-        },
-        {
-          "name": "goodbye_intent",
-          "slots": [],
-          "samples": [
-            "Tschüssi",
-            "Bye",
-            "Byebye",
-            "Auf wiedersehen",
-            "Bis bald",
-            "Bis morgen"
-          ]
-        },
-        {
-          "name": "HealthBreakFinish",
-          "slots": [],
-          "samples": [
-            "healthbreakfinish",
-            "Health Break fertig"
-          ]
-        },
-        {
-          "name": "BackToWork",
-          "slots": [],
-          "samples": [
-            "backtowork",
-            "arbeitszeit übrig"
-          ]
-        },
-        {
-          "name": "CompleteFinish",
-          "slots": [],
-          "samples": [
-            "completefinish"
-          ]
-        }
-      ],
-      "types": []
-    },
-    "dialog": {
-      "intents": [
-        {
-          "name": "runtime",
-          "confirmationRequired": true,
-          "prompts": {
-            "confirmation": "Confirm.Intent.1631468715880"
-          },
-          "slots": [
-            {
-              "name": "work_time",
-              "type": "AMAZON.DURATION",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
-            }
-          ]
-        },
-        {
-          "name": "intervals",
-          "confirmationRequired": true,
-          "prompts": {
-            "confirmation": "Confirm.Intent.819241000116"
-          },
-          "slots": [
-            {
-              "name": "break_amount",
-              "type": "AMAZON.NUMBER",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
-            },
-            {
-              "name": "break_intervals",
-              "type": "AMAZON.DURATION",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
-            },
-            {
-              "name": "work_time",
-              "type": "AMAZON.DURATION",
-              "elicitationRequired": false,
-              "confirmationRequired": false,
-              "prompts": {}
-            }
-          ]
-        }
-      ],
-      "delegationStrategy": "ALWAYS"
-    },
-    "prompts": [
-      {
-        "id": "Confirm.Intent.1631468715880",
-        "variations": [
-          {
-            "type": "PlainText",
-            "value": "Respekt, {work_time} also?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Wow, {work_time} willst du arbeiten?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Ich habe mir {work_time} gemerkt, passt das?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Wir sind bei {work_time} oder?"
-          },
-          {
-            "type": "PlainText",
-            "value": "ok, also {work_time} ?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Du willst heute {work_time} produktiv sein?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Du willst heute {work_time} arbeiten?"
-          },
-          {
-            "type": "PlainText",
-            "value": "{work_time} oder?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Für {work_time}"
-          },
-          {
-            "type": "PlainText",
-            "value": "Für {work_time} also. Stimmt das?"
-          }
-        ]
+          "types": []
       },
-      {
-        "id": "Confirm.Intent.819241000116",
-        "variations": [
+      "dialog": {
+          "intents": [
+              {
+                  "name": "runtime",
+                  "confirmationRequired": true,
+                  "prompts": {
+                      "confirmation": "Confirm.Intent.1631468715880"
+                  },
+                  "slots": [
+                      {
+                          "name": "work_time",
+                          "type": "AMAZON.DURATION",
+                          "confirmationRequired": false,
+                          "elicitationRequired": false,
+                          "prompts": {}
+                      }
+                  ]
+              },
+              {
+                  "name": "intervals",
+                  "confirmationRequired": true,
+                  "prompts": {
+                      "confirmation": "Confirm.Intent.819241000116"
+                  },
+                  "slots": [
+                      {
+                          "name": "break_amount",
+                          "type": "AMAZON.NUMBER",
+                          "confirmationRequired": false,
+                          "elicitationRequired": false,
+                          "prompts": {}
+                      },
+                      {
+                          "name": "break_intervals",
+                          "type": "AMAZON.DURATION",
+                          "confirmationRequired": false,
+                          "elicitationRequired": false,
+                          "prompts": {}
+                      },
+                      {
+                          "name": "work_time",
+                          "type": "AMAZON.DURATION",
+                          "confirmationRequired": false,
+                          "elicitationRequired": false,
+                          "prompts": {}
+                      }
+                  ]
+              },
+              {
+                  "name": "session_init",
+                  "confirmationRequired": false,
+                  "prompts": {},
+                  "slots": []
+              }
+          ],
+          "delegationStrategy": "ALWAYS"
+      },
+      "prompts": [
           {
-            "type": "PlainText",
-            "value": "Verstanden, {break_amount} Mal also?"
+              "id": "Confirm.Intent.1631468715880",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "Respekt, {work_time} also?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Wow, {work_time} willst du arbeiten?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Ich habe mir {work_time} gemerkt, passt das?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Wir sind bei {work_time} oder?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "ok, also {work_time} ?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Du willst heute {work_time} produktiv sein?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Du willst heute {work_time} arbeiten?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "{work_time} oder?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Für {work_time}"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Für {work_time} also. Stimmt das?"
+                  }
+              ]
           },
           {
-            "type": "PlainText",
-            "value": "Habe ich dich richtig verstanden, also {break_amount} Mal?"
+              "id": "Confirm.Intent.819241000116",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "Verstanden, {break_amount} Mal also?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Habe ich dich richtig verstanden, also {break_amount} Mal?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Du willst dir innerhalb deiner {work_time} Arbeitszeit {break_amount} Mal eine Pause nehmen?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Du willst {break_amount} Pausen Nehmen?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Ok, {break_amount} mal also?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Ok, {break_amount} Mal?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Ok, also alle {break_intervals} ?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "{break_amount} mal Pause also. Stimmt das?"
+                  },
+                  {
+                      "type": "PlainText",
+                      "value": "Alle {break_intervals} also. Stimmt das?"
+                  }
+              ]
           },
           {
-            "type": "PlainText",
-            "value": "Du willst dir innerhalb deiner {work_time} Arbeitszeit {break_amount} Mal eine Pause nehmen?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Du willst {break_amount} Pausen Nehmen?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Ok, {break_amount} mal also?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Ok, {break_amount} Mal?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Ok, also alle {break_intervals} ?"
-          },
-          {
-            "type": "PlainText",
-            "value": "{break_amount} mal Pause also. Stimmt das?"
-          },
-          {
-            "type": "PlainText",
-            "value": "Alle {break_intervals} also. Stimmt das?"
+              "id": "Confirm.Intent.1319246338001",
+              "variations": [
+                  {
+                      "type": "PlainText",
+                      "value": "whe"
+                  }
+              ]
           }
-        ]
-      }
-    ]
-  },
-  "version": "14"
+      ]
+  }
 }
