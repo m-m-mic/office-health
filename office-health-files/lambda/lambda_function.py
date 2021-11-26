@@ -39,17 +39,17 @@ class LaunchRequestHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> Response
         
         attr = handler_input.attributes_manager.persistent_attributes
-        if not attr:
+        
             #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
             #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
             #workintervt: dauer der arbeits intervalle
-            attr['exercisenum'] = 0
-            attr['worktime'] = 0
-            attr['breaks'] = 0 
-            attr['breaknum'] = 0
-            attr['workintervt'] = 0
+         attr['exercisenum'] = 0
+         attr['worktime'] = 0
+         attr['breaks'] = 0 
+         attr['breaknum'] = 0
+         attr['workintervt'] = 0
             
-            handler_input.attributes_manager.save_persistent_attributes()
+         handler_input.attributes_manager.save_persistent_attributes()
         
         speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
 
