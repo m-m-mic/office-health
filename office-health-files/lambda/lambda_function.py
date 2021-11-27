@@ -7,6 +7,9 @@
 import logging
 import ask_sdk_core.utils as ask_utils
 import ask_sdk_model
+# importiert Python random library und speak_input.py als si
+import random
+import speak_input as si
 
 import os
 import boto3
@@ -15,7 +18,6 @@ from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
-
 
 from ask_sdk_model import Response
 
@@ -31,7 +33,6 @@ ddb_table_name = os.environ.get('DYNAMODB_PERSISTENCE_TABLE_NAME')
 ddb_resource = boto3.resource('dynamodb', region_name=ddb_region)
 dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=False, dynamodb_resource=ddb_resource)
 
-
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
     def can_handle(self, handler_input):
@@ -42,7 +43,6 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-
         attr = handler_input.attributes_manager.persistent_attributes
         #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
         #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
@@ -54,16 +54,23 @@ class LaunchRequestHandler(AbstractRequestHandler):
         attr['workintervt'] = 0
         
         handler_input.attributes_manager.save_persistent_attributes()
-            
-        speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
+        
+        # weist den vier Variablen die Listen aus speak_input.py zu; unser speak_output für LaunchRequest besteht aus drei Teilen, deswegen drei Variablen
+        spo_1 = si.lr_spo_1
+        spo_2 = si.lr_spo_2
+        spo_3 = si.lr_spo_3
+        rpo = si.lr_rpo
+        
+        # speak_output und reprompt_output werden aus zufälligen Listeneinträgen von speak_input.py zusammengebaut
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)]
+        reprompt_output = rpo[random.randrange(0, len(rpo)-1)]
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(speak_output)
+                .ask(reprompt_output)
                 .response
         )
-
 
 class runtimeHandler(AbstractRequestHandler):
     """Handler for runtime Intent."""
