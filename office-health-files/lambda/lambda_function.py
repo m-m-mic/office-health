@@ -6,6 +6,7 @@
 # This sample is built using the handler classes approach in skill builder.
 import logging
 import ask_sdk_core.utils as ask_utils
+import ask_sdk_model
 
 import os
 import boto3
@@ -14,7 +15,6 @@ from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
-
 
 
 from ask_sdk_model import Response
@@ -71,14 +71,20 @@ class runtimeHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("runtime")(handler_input)
 
-    def handle(self, handler_input):
+    def handle(self, handler_input): 
+        # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
+        # hier wird abgefragt, ob der confirmation_status des Intents auf CONFIRMED oder DENIED steht; wenn er auf DENIED steht wird die Frage wiederholt
+        if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
+            speak_output = "Wie häufig möchten Sie währenddessen Health Breaks nehmen?"
+        else:
+            speak_output = "Okay, wie lange willst du heute arbeiten?"
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Wie häufig möchten Sie währenddessen Health Breaks nehmen?"
-
+        
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("Okay, wie viel Stunden möchtest du also arbeiten?")
+                .ask(speak_output)
                 .response
         )
 
@@ -89,13 +95,17 @@ class intervalsHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("intervals")(handler_input)
 
     def handle(self, handler_input):
+        # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
+        if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
+            speak_output = "Bist du bereit? Wenn ja, sag: Los!"
+        else:
+            speak_output = "Okay, wie viele Pausen willst du also nehmen?"
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Wenn ja, dann sag einfach: Los."
-
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("Wie viele Pausen möchtest du also nehmen?")
+                .ask(speak_output)
                 .response
         )
 
@@ -108,11 +118,12 @@ class session_initHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!"
+        reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask(reprompt_output)
                 .response
         )
 
@@ -125,11 +136,12 @@ class workout_explanationHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         speak_output = "Deine nächste Übung heißt Hampelmänner. (Hier Hampelmänner Übungsanleitung einfügen) Wir wiederholen die Übung 15 mal. Soll ich die Anleitung wiederholen oder kann es los gehen?"
+        reprompt_output = "Willst du, dass ich die Anleitung wiederhole? Oder soll es losgehen?"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask(reprompt_output)
                 .response
         )
 
@@ -151,22 +163,23 @@ class workout_initHandler(AbstractRequestHandler):
 
         if attr['exercisenum'] < 3:
             if attr['exercisenum'] == 1:
-                outp += ("Die erste Übung hast du geschafft, wenn du bereitfür die Nächste bist sag Bescheid")
+                outp += ("Die erste Übung hast du geschafft, wenn du bereit für die nächste Übung bist, sag Bescheid!")
             else:
-                outp += ("Super. noch Eine. Sag wieder wenn du bereit bist")
+                outp += ("Super. Noch eine Übung! Sag nächste Übung, wenn du weiter machen willst.")
         else:
-            outp += ("So das wars erstmal. jetzt erstmal zurück zur arbeit. sag los wenn du beginnst zu arbeiten")
+            outp += ("So das wars erstmal. Du hast jetzt 1 Minute lang Zeit, dich zu erholen, bevor es weiter an die Arbeit geht. (Hier eine Minute Pause einzufügen) Die Pause ist vorüber. Sag weiter, wenn Sie zurück an die Arbeit wollen. Sag fertig, wenn du das Programm beenden willst.")
             attr['exercisenum'] = 0
             
         handler_input.attributes_manager.save_persistent_attributes()
         
         #testing
         speak_output = outp
+        reprompt_output = outp
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask(reprompt_output)
                 .response
         )
 
@@ -178,12 +191,12 @@ class workout_finishHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Du hast deine Health Break geschafft!"
+        speak_output = "Viel Spaß bei der Arbeit!"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask(speak_output)
                 .response
         )
 
@@ -195,12 +208,12 @@ class BackToWorkHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Du hast jetzt 1 Minute lang Zeit, dich zu erholen, bevor es weiter an die Arbeit geht. (1 Minute Pause hier einfügen) Ich melde mich bald wieder."
+        speak_output = " (1 Minute Pause hier einfügen)"
 
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask("Ich melde mich bald wieder.")
                 .response
         )
 
@@ -217,7 +230,7 @@ class session_finishHandler(AbstractRequestHandler):
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                #.ask("add a reprompt if you want to keep the session open for the user to respond")
+                .ask(speak_output)
                 .response
         )
 
