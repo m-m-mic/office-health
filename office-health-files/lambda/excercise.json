@@ -94,7 +94,7 @@
             "dauer": "30",
             "seitenwechsel": "FALSE",
             "beschreibung": "Als nächstes heben wir in stehender Position die Arme auf Schulterhöhe, die Ellenboen bleiben an ihrer Stelle und die beiden Handflächen werden zusammengeführt, sodass eine Art Rechteck entsteht. In dieser Stellung schwingst du die Arme von links nach rechts und hebst nach jedem zweiten Schwung dein linkes und dann dein rechtes Bein angezogen an deinem Körper hoch.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "hip rotation",
@@ -102,7 +102,7 @@
             "dauer": "0",
             "seitenwechsel": "TRUE",
             "beschreibung": "Die nächste Übung musst du im Stehen ausführen. Hebe dann dein rechtes Bein vor dir in einem 90 Grad Winkel hoch und bewege daraufhin dein Bein seitlich zu Boden. Dabei sollte dein Bewegungsfluss dem Buchstaben C ähneln. Hierbei werden deine Bauchmuskeln und dein Becken trainiert.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "squad with reach",
@@ -110,7 +110,7 @@
             "dauer": "30",
             "seitenwechsel": "FALSE",
             "beschreibung": "Für diese Übung stellst Du dich schulterbreit hin, deine Fußspitzen zeigen nach vorne. Geh in die Knie; achte darauf, dass deine Knie hinter deinen Fußspitzen bleiben. Dann streckst Du deine Beine wieder/ Richtest dich wieder auf. Nachdem du aufgerichtet bist, richtest du deine Arme nach oben und streckst dich so hoch wie möglich. Danach gehst du wieder in die Ausgangsstellung.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "side leg raise",
@@ -118,7 +118,7 @@
             "dauer": "30",
             "seitenwechsel": "FALSE",
             "beschreibung": "Als nächstes hältst du deine Handflächen seitlich an den Hinterkopf. Dein Rücken bleibt gerade und du ziehst zuerst das rechte Bein angewinkelt zu deiner Bauchmitte. Während dein Knie in deinem Zentrum ist, krümmst du leicht deinen Rücken um mit dem linken Ellenbogen dein Knie zu berühren. Das selbe wiederholst du mit deinem linken Bein und rechten Ellenbogen.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "crab walk",
@@ -126,7 +126,7 @@
             "dauer": "30",
             "seitenwechsel": "FALSE",
             "beschreibung": "Für diese Übung brauchst du seitlich von dir etwas Platz. Gehe leicht in die Hocke und stelle deine Beine so aus, dass deine Kniescheiben leicht außerhalb von der Höhe deiner Hüfte sind. Gehe jetzt in dieser Position seitlich zwei bis drei Schritte nach links und dann nach rechts.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "low kick",
@@ -134,7 +134,7 @@
             "dauer": "0",
             "seitenwechsel": "FALSE",
             "beschreibung": "Für diese Übung kickst du dein rechtes Bein auf die Höhe deines Bauchnabels. Und du bewegst deinen linken Arm nach vorne und den rechten Arm nach hinten. Knicke dein Bein beim Kick jedoch nicht zu sehr ein und halte es fast ganz gerade.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "reach and tap",
@@ -142,7 +142,7 @@
             "dauer": "0",
             "seitenwechsel": "TRUE",
             "beschreibung": "Die nächste Übung machst du im Stehen. Strecke zuerst deine Arme nach oben und stelle den rechten Fuß weiter hinter, sodass ein leichter Ausfallschritt entsteht. In einer flüssigen Bewegung bewegst du deine rechte Ferse zu deinem Popo hoch und bewegst währenddessen deine Arme nach unten. Ist die Bewegung ausgeführt, so stellst du dich wieder in die Ausgangsposition",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "feet tap",
@@ -150,7 +150,7 @@
             "dauer": "30",
             "seitenwechsel": "FALSE",
             "beschreibung": "Diese Übung musst du im Stehen machen. Stell dich schulterbreit hin und hebe deine rechte Ferse zur gegenüberliegenden Hand hoch, dabei sollte der Fuß nur leicht über dein Knie gehen. Klopf die Ferse dann mit deiner Hand ab und setzt den Fuß wieder ab. Wechsel dabei stets deine Fersen.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         },
         {
             "name": "leg circles",
@@ -158,7 +158,7 @@
             "dauer": "15",
             "seitenwechsel": "TRUE",
             "beschreibung": "Für diese Übung musst du Stehen und etwas Platz haben. Hebe dein rechtes Bein seitlich leicht in die Luft und halte gerade. Mit dem Bein in der Position malst du nun kleine Kreise in die Lust.",
-            "genaue beschreibung": "\"\""
+            "genaue beschreibung": ""
         }
     ]
 }
