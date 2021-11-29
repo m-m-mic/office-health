@@ -70,5 +70,95 @@
             "beschreibung": "Für diese Übung solltest Du schulterbreit stehen, deine Füße zeigen nach vorne, deine Knie sind leicht gebeugt. Wir führen unsere Hände vor der Brust zusammen, lassen unsere Ellbogen dabei gebeugt und fangen dann an mit den Händen langsam eine 8 zu kreisen. Dabei halten wir unseren Rücken gerade und achten darauf, dass unser Po und unser Bauch fest sind und sich nicht mitbewegen. Um die Übung zu steigern kannst Du die 8 immer schneller und kleiner werden lassen.",
             "genaue beschreibung": "Du stehst leicht in den Knien, deine Fußspitzen zeigen nach vorne. Führe deine Hände vor der Brust zusammen. Als würden sie sich gegenseitig einen Bro-Check geben. Deine Ellbogen sind abgewinkelt. Zeichne jetzt mit deinen Händen eine 8 vor dir in der Luft. Dabei sollten sich dein Po und dein Bauch nicht mitbewegen. Halte deinen Rücken gerade. Kreise am Anfang nur in eine Richtung, ich sage dir Bescheid, wenn wir die Richtung wechseln."
         }
+    ],
+    "sport": [
+        {
+            "name": "waschbrettbauch",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Setz dich auf die Vorderkante von deinem Stuhl, deine Füße stehen auf dem Boden und deine Beine befinden sich in einem rechten Winkel. Lehn(e) dich jetzt nach hinten, halte dabei deinen Oberkörper gerade. Strecke jetzt deine Arme nach vorne aus. Und bewege sie in einer Wechselbewegung nach oben und unten.",
+            "genaue beschreibung": "Du sitzt auf deinem Stuhl und rutscht vor bis zur Kante. Du sitzt jetzt ganz normal mit geradem Rücken an der Kante. Dann lehnst Du dich mit deinem Oberkörper nach hinten, bis du spürst das sich dein Bauch anspannt. Halte diese Position und strecke deine Arme nach vorne aus. Bewege nun einen Arm nach oben und gleichzeitig den anderen nach unten, danach bewegst du den einen Arm, der gerade oben ist nach unten und anders rum. Diese Bewegung wiederholst Du mehrmals, bis ich Stopp sage. Achte darauf eher kleinere, schnellere Bewegungen zu machen, lass sie nicht zu groß werden."
+        },
+        {
+            "name": "russian twist",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Setz dich auf deinen Stuhl und rutsche vor bis zur vorderen Kante. Deine Fersen sind auf dem Boden, deine Fußspitzen in der Luft. Lehne Dich mit geradem Oberkörper nach hinten. Strecke deine Arme nach vorne aus und press deine Handflächen zusammen. Für den Russian Twist musst Du nun langsam und kontrolliert deinen Oberkörper von links nach rechts drehen und wieder zurück.",
+            "genaue beschreibung": "Du sitzt auf deinem Stuhl. Rutsch vor bis zur Kante. Hebe deine Zehen vom Boden, nur deine Fersen sollen noch den Boden berühren. Lehne dich leicht nach hinten, bis du eine Anspannung deiner Bauchmuskulatur spürst. Dein Rücken sollte immer noch gerade sein. Press deine Handflächen zusammen und strecke deine Arme gerade von dir weg. Nun musst du deinen gesamten Oberkörper langsam und kontrolliert von links nach rechts und wieder zurück rotieren."
+        },
+        {
+            "name": "high knee rotation",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Als nächstes heben wir in stehender Position die Arme auf Schulterhöhe, die Ellenboen bleiben an ihrer Stelle und die beiden Handflächen werden zusammengeführt, sodass eine Art Rechteck entsteht. In dieser Stellung schwingst du die Arme von links nach rechts und hebst nach jedem zweiten Schwung dein linkes und dann dein rechtes Bein angezogen an deinem Körper hoch.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "hip rotation",
+            "reps": "10",
+            "dauer": "0",
+            "seitenwechsel": "TRUE",
+            "beschreibung": "Die nächste Übung musst du im Stehen ausführen. Hebe dann dein rechtes Bein vor dir in einem 90 Grad Winkel hoch und bewege daraufhin dein Bein seitlich zu Boden. Dabei sollte dein Bewegungsfluss dem Buchstaben C ähneln. Hierbei werden deine Bauchmuskeln und dein Becken trainiert.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "squad with reach",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Für diese Übung stellst Du dich schulterbreit hin, deine Fußspitzen zeigen nach vorne. Geh in die Knie; achte darauf, dass deine Knie hinter deinen Fußspitzen bleiben. Dann streckst Du deine Beine wieder/ Richtest dich wieder auf. Nachdem du aufgerichtet bist, richtest du deine Arme nach oben und streckst dich so hoch wie möglich. Danach gehst du wieder in die Ausgangsstellung.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "side leg raise",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Als nächstes hältst du deine Handflächen seitlich an den Hinterkopf. Dein Rücken bleibt gerade und du ziehst zuerst das rechte Bein angewinkelt zu deiner Bauchmitte. Während dein Knie in deinem Zentrum ist, krümmst du leicht deinen Rücken um mit dem linken Ellenbogen dein Knie zu berühren. Das selbe wiederholst du mit deinem linken Bein und rechten Ellenbogen.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "crab walk",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Für diese Übung brauchst du seitlich von dir etwas Platz. Gehe leicht in die Hocke und stelle deine Beine so aus, dass deine Kniescheiben leicht außerhalb von der Höhe deiner Hüfte sind. Gehe jetzt in dieser Position seitlich zwei bis drei Schritte nach links und dann nach rechts.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "low kick",
+            "reps": "10",
+            "dauer": "0",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Für diese Übung kickst du dein rechtes Bein auf die Höhe deines Bauchnabels. Und du bewegst deinen linken Arm nach vorne und den rechten Arm nach hinten. Knicke dein Bein beim Kick jedoch nicht zu sehr ein und halte es fast ganz gerade.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "reach and tap",
+            "reps": "8",
+            "dauer": "0",
+            "seitenwechsel": "TRUE",
+            "beschreibung": "Die nächste Übung machst du im Stehen. Strecke zuerst deine Arme nach oben und stelle den rechten Fuß weiter hinter, sodass ein leichter Ausfallschritt entsteht. In einer flüssigen Bewegung bewegst du deine rechte Ferse zu deinem Popo hoch und bewegst währenddessen deine Arme nach unten. Ist die Bewegung ausgeführt, so stellst du dich wieder in die Ausgangsposition",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "feet tap",
+            "reps": "0",
+            "dauer": "30",
+            "seitenwechsel": "FALSE",
+            "beschreibung": "Diese Übung musst du im Stehen machen. Stell dich schulterbreit hin und hebe deine rechte Ferse zur gegenüberliegenden Hand hoch, dabei sollte der Fuß nur leicht über dein Knie gehen. Klopf die Ferse dann mit deiner Hand ab und setzt den Fuß wieder ab. Wechsel dabei stets deine Fersen.",
+            "genaue beschreibung": "\"\""
+        },
+        {
+            "name": "leg circles",
+            "reps": "0",
+            "dauer": "15",
+            "seitenwechsel": "TRUE",
+            "beschreibung": "Für diese Übung musst du Stehen und etwas Platz haben. Hebe dein rechtes Bein seitlich leicht in die Luft und halte gerade. Mit dem Bein in der Position malst du nun kleine Kreise in die Lust.",
+            "genaue beschreibung": "\"\""
+        }
     ]
 }
