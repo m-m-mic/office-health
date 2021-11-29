@@ -78,11 +78,15 @@ class runtimeHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("runtime")(handler_input)
 
-    def handle(self, handler_input): 
+    def handle(self, handler_input):
+        
+        spo_1 = si.rt_spo_1
+        spo_2 = si.rt_spo_2
+        
         # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
         # hier wird abgefragt, ob der confirmation_status des Intents auf CONFIRMED oder DENIED steht; wenn er auf DENIED steht wird die Frage wiederholt
         if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
-            speak_output = "Wie häufig möchten Sie währenddessen Health Breaks nehmen?"
+            speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
         else:
             speak_output = "Okay, wie lange willst du heute arbeiten?"
         
@@ -102,9 +106,13 @@ class intervalsHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("intervals")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.i_spo_1
+        spo_2 = si.i_spo_2
+        
         # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
         if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
-            speak_output = "Bist du bereit? Wenn ja, sag: Los!"
+            speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
         else:
             speak_output = "Okay, wie viele Pausen willst du also nehmen?"
         
@@ -123,8 +131,15 @@ class session_initHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("session_init")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.si_spo_1
+        spo_2 = si.si_spo_2
+        spo_3 = si.si_spo_3
+        spo_4 = si.si_spo_4
+        spo_5 = si.si_spo_5
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!"
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)]
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
 
         return (
@@ -197,8 +212,13 @@ class workout_finishHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("workout_finish")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.wf_spo_1
+        spo_2 = si.wf_spo_2
+        spo_3 = si.wf_spo_3
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Viel Spaß bei der Arbeit!"
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)]
 
         return (
             handler_input.response_builder
@@ -231,8 +251,12 @@ class session_finishHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("session_finish")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.sf_spo_1
+        spo_2 = si.sf_spo_2
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Das wars für heute! Super, dass Du mitgemacht hast."
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
 
         return (
             handler_input.response_builder
