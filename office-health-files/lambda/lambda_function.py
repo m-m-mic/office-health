@@ -154,9 +154,9 @@ class session_initHandler(AbstractRequestHandler):
             attr[attrName][2] = exList[rn]['seitenwechsel'] == 'TRUE'
             attr[attrName][3] = exList[rn]['beschreibung']
         
-        listifyExercise('stretch_1', stretches, r1)
+        listifyExercise('stretch_one', stretches, r1)
         listifyExercise('sport', sports, r2)
-        listifyExercise('stretch_2', stretches, r3)
+        listifyExercise('stretch_two', stretches, r3)
         
         speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" + ' ' + attr['stretch_one'][0] + ' ' + attr['sport'][0] + ' ' + attr['stretch_two'][0]
 
