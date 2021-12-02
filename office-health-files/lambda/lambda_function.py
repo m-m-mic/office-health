@@ -159,7 +159,7 @@ class session_initHandler(AbstractRequestHandler):
         listifyExercise('sport', sports, r2)
         listifyExercise('stretch_two', stretches, r3)
         
-        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" + ' ' + attr['stretch_one'][0] + ' ' + attr['sport'][0] + ' ' + attr['stretch_two'][0]
+        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" 
 
         
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
