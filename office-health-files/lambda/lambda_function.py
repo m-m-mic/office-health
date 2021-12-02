@@ -16,8 +16,6 @@ import boto3
 
 #damit wir auf die json Datei zugreifen können
 import json
-#random modul
-import random
 
 from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
