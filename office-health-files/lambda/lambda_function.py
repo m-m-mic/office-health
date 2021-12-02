@@ -178,7 +178,21 @@ class workout_explanationHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Deine nächste Übung heißt Hampelmänner. (Hier Hampelmänner Übungsanleitung einfügen) Wir wiederholen die Übung 15 mal. Soll ich die Anleitung wiederholen oder kann es los gehen?"
+        attr = handler_input.attributes_manager.persistent_attributes
+        outp = ""
+        if not attr:
+            attr['exercisenum'] = 0
+        #attr['exercisenum'] += 1
+        
+        if attr['exercisenum'] == 0:
+            speak_output = "<speak>Deine nächste Übung heißt " + attr['stretch_one'][0] + '. ' + attr['stretch_one'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+        
+        if attr['exercisenum'] == 1:
+            speak_output = "<speak>Deine nächste Übung heißt " + attr['sport'][0] + '. ' + attr['sport'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+            
+        if attr['exercisenum'] == 2:
+            speak_output = "<speak>Deine nächste Übung heißt " + attr['stretch_two'][0] + '. ' + attr['stretch_two'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+        
         reprompt_output = "Willst du, dass ich die Anleitung wiederhole? Oder soll es losgehen?"
 
         return (
