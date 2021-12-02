@@ -11,6 +11,11 @@ import ask_sdk_model
 import os
 import boto3
 
+#damit wir auf die json Datei zugreifen können
+import json
+#random modul
+import random
+
 from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
@@ -52,6 +57,11 @@ class LaunchRequestHandler(AbstractRequestHandler):
         attr['breaks'] = 0 
         attr['breaknum'] = 0
         attr['workintervt'] = 0
+        
+        #attribute in denen die 3 verschiedenen zufälligen übungen während einem workout gespeichert werden
+        attr['stretch_1'] = ['', 0, False, '']
+        attr['sport'] = ['', 0, False, '']
+        attr['stretch_2'] = ['', 0, False, '']
         
         handler_input.attributes_manager.save_persistent_attributes()
             
@@ -117,7 +127,40 @@ class session_initHandler(AbstractRequestHandler):
 
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
-        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!"
+        
+        exercisesDict = json.load(open('exercise.json', 'r'))
+        #liste aller dehnübungen
+        stretches = exercisesDict['stretch']
+        #liste aller sportübungen
+        sports = exercisesDict['sport']
+        
+        #persistent attributes laden
+        attr = handler_input.attributes_manager.persistent_attributes
+        #var für die jeweiligen längen der listen
+        stl = len(stretches)
+        spl = len(sports)
+        
+        #zufällige indizes für die listen
+        r1 = random.randrange(0, stl)
+        r2 = random.randrange(0, spl)
+        r3 = r1
+        while r3 == r1:
+            r3 = random.randrange(0, stl)
+            
+        #funktion die anhand der zufälligen Zahlen eine Übung in den attributen speichert
+        def listifyExercise(attrName, exList, rn):
+            attr[attrName][0] = exList[rn]['name']
+            attr[attrName][1] = int(exList[rn]['dauer'])
+            attr[attrName][2] = exList[rn]['seitenwechsel'] == 'TRUE'
+            attr[attrName][3] = exList[rn]['beschreibung']
+        
+        listifyExercise('stretch_1', stretches, r1)
+        listifyExercise('sport', sports, r2)
+        listifyExercise('stretch_2', stretches, r3)
+        
+        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" + ' ' + attr['stretch_1'][0] + ' ' + attr['sport'][0] + ' ' + attr['stretch_2'][0]
+
+        
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
 
         return (
