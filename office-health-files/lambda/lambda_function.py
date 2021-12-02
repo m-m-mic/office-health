@@ -59,9 +59,9 @@ class LaunchRequestHandler(AbstractRequestHandler):
         attr['workintervt'] = 0
         
         #attribute in denen die 3 verschiedenen zufälligen übungen während einem workout gespeichert werden
-        attr['stretch_1'] = ['', 0, False, '']
+        attr['stretch_one'] = ['', 0, False, '']
         attr['sport'] = ['', 0, False, '']
-        attr['stretch_2'] = ['', 0, False, '']
+        attr['stretch_two'] = ['', 0, False, '']
         
         handler_input.attributes_manager.save_persistent_attributes()
             
@@ -158,7 +158,7 @@ class session_initHandler(AbstractRequestHandler):
         listifyExercise('sport', sports, r2)
         listifyExercise('stretch_2', stretches, r3)
         
-        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" + ' ' + attr['stretch_1'][0] + ' ' + attr['sport'][0] + ' ' + attr['stretch_2'][0]
+        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" + ' ' + attr['stretch_one'][0] + ' ' + attr['sport'][0] + ' ' + attr['stretch_two'][0]
 
         
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
