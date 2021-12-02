@@ -153,6 +153,7 @@ class session_initHandler(AbstractRequestHandler):
             attr[attrName][1] = int(exList[rn]['dauer'])
             attr[attrName][2] = exList[rn]['seitenwechsel'] == 'TRUE'
             attr[attrName][3] = exList[rn]['beschreibung']
+            handler_input.attributes_manager.save_persistent_attributes()
         
         listifyExercise('stretch_one', stretches, r1)
         listifyExercise('sport', sports, r2)
