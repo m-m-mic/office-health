@@ -59,7 +59,7 @@ class LaunchRequestHandler(AbstractRequestHandler):
         attr['workintervt'] = 0
         
         #attribute in denen die 3 verschiedenen zufälligen übungen während einem workout gespeichert werden
-        attr['stretch_one'] = ['', 0, False, '']
+        attr['stretch_one'] = ['', 30, False, '']
         attr['sport'] = ['', 0, False, '']
         attr['stretch_two'] = ['', 0, False, '']
         
@@ -217,8 +217,25 @@ class workout_initHandler(AbstractRequestHandler):
             attr['exercisenum'] = 0
         attr['exercisenum'] += 1
         
-        outp = "Dann, auf die Plätze, fertig, los! 1 (Sprechpause), 2 (Sprechpause), 3 (Sprechpause) ..., 15 (Sprechpause)."#" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
-
+        outp = "Dann, auf die Plätze, fertig, los!)."#" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
+        time = attr["stretch_one"][1] # Countdown der die Zeitintervalle der Übungen runterzählt.
+        while time != 0:
+            if time >= 30: 
+                outp += ("Diese Übung wird wohl etwas länger. Also beweg deinen Arsch mal so richtig!<break time =\"10s\"/> Kommst du schon ins Schwitzen? <break time =\"10s\"/>")
+                time -= 25
+            if time == 30:
+                outp += ("30 sekunden hast du vor dir! Leg dich ins Zeug. <break time =\"10s\"/> Nur noch die hälfte, gib also mal richtig Gas!<break time =\"10s\"/> ")
+                time -= 25
+            if time > 10: 
+                outp += ("Die Zeit läuft, streng dich also mal an! <break time=\"9s\"/> ")
+                time -= 10
+            if time == 10:
+                outp += ("Die zehn Sekunden schaffst du bestimmt nicht. <break time =\"3s\"/> ")
+                time -= 5
+            if time == 5:
+                outp +=  ("Noch fünf Sekunden. Fünf <break time =\"1s\"/> vier <break time =\"1s\"/> drei <break time =\"1s\"/> zwei <break time =\"1s\"/> eins <break time =\"1s\"/> Na endlich! ")
+                time -= 5
+                
         if attr['exercisenum'] < 3:
             if attr['exercisenum'] == 1:
                 outp += ("Die erste Übung hast du geschafft, wenn du bereit für die nächste Übung bist, sag Bescheid!")
