@@ -7,6 +7,9 @@
 import logging
 import ask_sdk_core.utils as ask_utils
 import ask_sdk_model
+# importiert Python random library und speak_input.py als si
+import random
+import speak_input as si
 
 import os
 import boto3
@@ -20,7 +23,6 @@ from ask_sdk_core.skill_builder import CustomSkillBuilder
 from ask_sdk_core.dispatch_components import AbstractRequestHandler
 from ask_sdk_core.dispatch_components import AbstractExceptionHandler
 from ask_sdk_core.handler_input import HandlerInput
-
 
 from ask_sdk_model import Response
 
@@ -36,7 +38,6 @@ ddb_table_name = os.environ.get('DYNAMODB_PERSISTENCE_TABLE_NAME')
 ddb_resource = boto3.resource('dynamodb', region_name=ddb_region)
 dynamodb_adapter = DynamoDbAdapter(table_name=ddb_table_name, create_table=False, dynamodb_resource=ddb_resource)
 
-
 class LaunchRequestHandler(AbstractRequestHandler):
     """Handler for Skill Launch."""
     def can_handle(self, handler_input):
@@ -47,7 +48,6 @@ class LaunchRequestHandler(AbstractRequestHandler):
     def handle(self, handler_input):
         # type: (HandlerInput) -> Response
         
-
         attr = handler_input.attributes_manager.persistent_attributes
         #worktime: wie lang insgesamt gearbeitet wird; breaks: wieviele breaks genommen werden; 
         #exercisenum: wieviele übungen in einer break gemacht wurden; breaknum: wieviele breaks schon während der arbeit gemacht wurden;
@@ -64,16 +64,23 @@ class LaunchRequestHandler(AbstractRequestHandler):
         attr['stretch_two'] = ['', 0, False, '']
         
         handler_input.attributes_manager.save_persistent_attributes()
-            
-        speak_output = "Hallo, ich bin Ihr Office Health Assistent! Ich sorge dafür, dass Sie beim Arbeiten weiterhin aktiv und gesund bleiben. Für wie lange wollen Sie heute arbeiten?"
+        
+        # weist den vier Variablen die Listen aus speak_input.py zu; unser speak_output für LaunchRequest besteht aus drei Teilen, deswegen drei Variablen
+        spo_1 = si.lr_spo_1
+        spo_2 = si.lr_spo_2
+        spo_3 = si.lr_spo_3
+        rpo = si.lr_rpo
+        
+        # speak_output und reprompt_output werden aus zufälligen Listeneinträgen von speak_input.py zusammengebaut
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)]
+        reprompt_output = rpo[random.randrange(0, len(rpo)-1)]
         
         return (
             handler_input.response_builder
                 .speak(speak_output)
-                .ask(speak_output)
+                .ask(reprompt_output)
                 .response
         )
-
 
 class runtimeHandler(AbstractRequestHandler):
     """Handler for runtime Intent."""
@@ -81,11 +88,15 @@ class runtimeHandler(AbstractRequestHandler):
         # type: (HandlerInput) -> bool
         return ask_utils.is_intent_name("runtime")(handler_input)
 
-    def handle(self, handler_input): 
+    def handle(self, handler_input):
+        
+        spo_1 = si.rt_spo_1
+        spo_2 = si.rt_spo_2
+        
         # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
         # hier wird abgefragt, ob der confirmation_status des Intents auf CONFIRMED oder DENIED steht; wenn er auf DENIED steht wird die Frage wiederholt
         if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
-            speak_output = "Wie häufig möchten Sie währenddessen Health Breaks nehmen?"
+            speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
         else:
             speak_output = "Okay, wie lange willst du heute arbeiten?"
         
@@ -105,9 +116,13 @@ class intervalsHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("intervals")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.i_spo_1
+        spo_2 = si.i_spo_2
+        
         # logger.info(handler_input.request_envelope.request.intent.confirmation_status)
         if handler_input.request_envelope.request.intent.confirmation_status == ask_sdk_model.intent_confirmation_status.IntentConfirmationStatus.CONFIRMED:
-            speak_output = "Bist du bereit? Wenn ja, sag: Los!"
+            speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
         else:
             speak_output = "Okay, wie viele Pausen willst du also nehmen?"
         
@@ -126,8 +141,15 @@ class session_initHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("session_init")(handler_input)
 
     def handle(self, handler_input):
-        # type: (HandlerInput) -> Response
         
+        spo_1 = si.si_spo_1
+        spo_2 = si.si_spo_2
+        spo_3 = si.si_spo_3
+        spo_4 = si.si_spo_4
+        spo_5 = si.si_spo_5
+        
+        # type: (HandlerInput) -> Response
+
         exercisesDict = json.load(open('exercise.json', 'r'))
         #liste aller dehnübungen
         stretches = exercisesDict['stretch']
@@ -159,9 +181,10 @@ class session_initHandler(AbstractRequestHandler):
         listifyExercise('sport', sports, r2)
         listifyExercise('stretch_two', stretches, r3)
         
-        speak_output = "Ihre erste Health Break beginnt in 20 Sekunden. Wenn du bereit bist, sag: Ich bin bereit!" 
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)]
 
         
+
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
 
         return (
@@ -265,8 +288,13 @@ class workout_finishHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("workout_finish")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.wf_spo_1
+        spo_2 = si.wf_spo_2
+        spo_3 = si.wf_spo_3
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Viel Spaß bei der Arbeit!"
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)]
 
         return (
             handler_input.response_builder
@@ -299,8 +327,12 @@ class session_finishHandler(AbstractRequestHandler):
         return ask_utils.is_intent_name("session_finish")(handler_input)
 
     def handle(self, handler_input):
+        
+        spo_1 = si.sf_spo_1
+        spo_2 = si.sf_spo_2
+        
         # type: (HandlerInput) -> Response
-        speak_output = "Das wars für heute! Super, dass Du mitgemacht hast."
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)]
 
         return (
             handler_input.response_builder
