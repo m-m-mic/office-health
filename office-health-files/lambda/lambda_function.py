@@ -58,8 +58,8 @@ class LaunchRequestHandler(AbstractRequestHandler):
         
         #attribute in denen die 3 verschiedenen zufälligen übungen während einem workout gespeichert werden
         attr['stretch_one'] = ['', 30, False, '']
-        attr['sport'] = ['', 0, False, '']
-        attr['stretch_two'] = ['', 0, False, '']
+        attr['sport'] = ['', 20, True, '']
+        attr['stretch_two'] = ['', 15, False, '']
         
         handler_input.attributes_manager.save_persistent_attributes()
         
@@ -179,7 +179,7 @@ class session_initHandler(AbstractRequestHandler):
         listifyExercise('sport', sports, r2)
         listifyExercise('stretch_two', stretches, r3)
         
-        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)]
+        speak_output = "<speak>" + spo_1[random.randrange(0, len(spo_1)-1)] + " <break time=\"10s\"/>" + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)] + "</speak>"
 
         
 
@@ -207,13 +207,13 @@ class workout_explanationHandler(AbstractRequestHandler):
         #attr['exercisenum'] += 1
         
         if attr['exercisenum'] == 0:
-            speak_output = "<speak>Deine nächste Übung heißt " + attr['stretch_one'][0] + '. ' + attr['stretch_one'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+            speak_output = "<speak>Deine erste Übung heißt " + attr['stretch_one'][0] + '. ' + attr['stretch_one'][3] + "<break time=\"1s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
         
         if attr['exercisenum'] == 1:
-            speak_output = "<speak>Deine nächste Übung heißt " + attr['sport'][0] + '. ' + attr['sport'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+            speak_output = "<speak>Deine nächste Übung heißt " + attr['sport'][0] + '. ' + attr['sport'][3] + "<break time=\"1s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
             
         if attr['exercisenum'] == 2:
-            speak_output = "<speak>Deine nächste Übung heißt " + attr['stretch_two'][0] + '. ' + attr['stretch_two'][3] + "<break time=\"2s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
+            speak_output = "<speak>Deine letzte Übung heißt " + attr['stretch_two'][0] + '. ' + attr['stretch_two'][3] + "<break time=\"1s\"/> Soll ich die Anleitung wiederholen oder kann es los gehen? </speak>"
         
         reprompt_output = "Willst du, dass ich die Anleitung wiederhole? Oder soll es losgehen?"
 
@@ -238,24 +238,51 @@ class workout_initHandler(AbstractRequestHandler):
             attr['exercisenum'] = 0
         attr['exercisenum'] += 1
         
-        outp = "Dann, auf die Plätze, fertig, los!)."#" Die Übung hast Du hinter dir! Jetzt hast Du 15 Sekunden Pause. (15 Sekunden Pause hier einfügen). Wenn du bereit für die nächste Übung bist sag: Nächste Übung."
-        time = attr["stretch_one"][1] # Countdown der die Zeitintervalle der Übungen runterzählt.
-        while time != 0:
-            if time >= 30: 
-                outp += ("Diese Übung wird wohl etwas länger. Also beweg deinen Arsch mal so richtig!<break time =\"10s\"/> Kommst du schon ins Schwitzen? <break time =\"10s\"/>")
-                time -= 25
-            if time == 30:
-                outp += ("30 sekunden hast du vor dir! Leg dich ins Zeug. <break time =\"10s\"/> Nur noch die hälfte, gib also mal richtig Gas!<break time =\"10s\"/> ")
-                time -= 25
-            if time > 10: 
-                outp += ("Die Zeit läuft, streng dich also mal an! <break time=\"9s\"/> ")
-                time -= 10
-            if time == 10:
-                outp += ("Die zehn Sekunden schaffst du bestimmt nicht. <break time =\"3s\"/> ")
-                time -= 5
-            if time == 5:
-                outp +=  ("Noch fünf Sekunden. Fünf <break time =\"1s\"/> vier <break time =\"1s\"/> drei <break time =\"1s\"/> zwei <break time =\"1s\"/> eins <break time =\"1s\"/> Na endlich! ")
-                time -= 5
+        time = 0 # Countdown für die einzelnen Übungen  
+        attr["exercise_countdown"] = ""
+        if attr['exercisenum'] == 1: # Überprüft welche Aufgabe an der Reihe ist und weißt Werte zu
+            time = attr["stretch_one"][1] 
+            attr["exercise_countdown"] = attr["stretch_one"]
+        elif attr['exercisenum'] == 2:
+            time = attr["sport"][1]
+            attr["exercise_countdown"] = attr["sport"]
+        else:
+            time = attr["stretch_two"][1] 
+            attr["exercise_countdown"] = attr["stretch_two"]
+        
+        temp_time = time          
+        over_thirty= ["<break time =\"10s\"/> Weiter weiter weiter. <break time =\"10s\"/> Los, Noch " + str((time-20)) + " Sekunden<break time =\"10s\"/>! ", "<break time =\"10s\"/> Noch " + str((time-10)) + " Sekunden hast du vor dir! <break time =\"10s\"/> Weiter! <break time =\"10s\"/>", "<break time =\"10s\"/> Die " + str((time-10)) + " Sekunden hälst du aus! <break time =\"10s\"/> Zeig was in dir steckt! <break time =\"10s\"/>" ]
+        equal_thiry = ["Das dauert wohl noch etwas länger, genau gesagt noch " + str(time) + " Sekunden. Also beweg dich mal so richtig!<break time =\"10s\"/> Kommst du schon ins Schwitzen? <break time =\"10s\"/>", str(time) + " Sekunden sind doch nicht so viel! Steck deine ganze Energie rein! <break time =\"10s\"/> Mach nicht schlapp! <break time =\"10s\"/>", "Weiter, nicht schlapp machen!<break time =\"10s\"/> Noch " + str((time-10)) + " Sekunden. <break time =\"10s\"/> Du kommst immer näher an das Ende deiner Übung. "  ]
+        over_ten =["Die Zeit läuft, noch " + str(time) + " Sekunden, streng dich also mal an! <break time=\"9s\"/> ", "Zeig mir was du drauf hast. Noch " + str(time) + "Sekunden. Gib jetzt nicht auf! <break time=\"9s\"/>", str(time) + " Sekunden liegen noch vor dir. Beweg und konzentrier dich, dann vergisst du auch ganz schnell die Zeit. <break time=\"8s\"/>" ]
+        equal_ten=["Die letzten 10 Sekunden schaffst du bestimmt. <break time =\"3s\"/>", "10 Sekunden nur noch! Jetzt mein ichs ernst: gib alles was du noch in dir hast! <break time =\"2s\"/>", "Die letzten Sekunden kannst du an deiner Hand runter zählen, also gib noch mal richtig Gas! <break time =\"2s\"/>"]
+        equal_five =["Noch 5 Sekunden. Fünf. Vier. Drei. Zwei. Eins. Na endlich, geschafft! ", "It's the final countdown! Fünf. Vier. Drei. Zwei. Eins. Geschafft! ", "Die letzten Sekunden! Fünf. Vier. Drei. Zwei. Eins. Fertig! "]
+        outp = ("Du hast " + str(time) + " Sekunden vor dir. Also dann, auf die Plätze, fertig, los! ") 
+        
+         
+        while temp_time != 0: # Zählt runter 
+            while time != 0:
+                #random_int = random.randint(0,2) #
+                if time > 30:
+                    outp += over_thirty[random.randint(0,2)]
+                    time -= 30
+                if time == 30: 
+                    outp +=  equal_thiry[random.randint(0,2)]
+                    time -= 25
+                if time > 10: 
+                    outp += over_ten[random.randint(0,2)]
+                    time -= 10
+                if time == 10:
+                    outp += equal_ten[random.randint(0,2)]
+                    time -= 5
+                if time == 5:
+                    outp +=  equal_five[random.randint(0,2)]
+                    time -= 5
+            if attr["exercise_countdown"][2] == True: # Überprüft pb Seitenwechsel
+                attr["exercise_countdown"][2] = False
+                time = temp_time
+                outp +=  ("Und jetzt wird die Übung auf der anderen Seite gemacht. Los gehts! ")
+            else:
+                temp_time -= temp_time
                 
         if attr['exercisenum'] < 3:
             if attr['exercisenum'] == 1:
@@ -263,7 +290,7 @@ class workout_initHandler(AbstractRequestHandler):
             else:
                 outp += ("Super. Noch eine Übung! Sag nächste Übung, wenn du weiter machen willst.")
         else:
-            outp += ("So das wars erstmal. Du hast jetzt 1 Minute lang Zeit, dich zu erholen, bevor es weiter an die Arbeit geht. (Hier eine Minute Pause einzufügen) Die Pause ist vorüber. Sag weiter, wenn Sie zurück an die Arbeit wollen. Sag fertig, wenn du das Programm beenden willst.")
+            outp += ("Das wars erstmal, ich bin stolz auf dich! Sag weiter, wenn du zurück an die Arbeit willst. Sag fertig, wenn du das Programm beenden willst.")
             attr['exercisenum'] = 0
             
         handler_input.attributes_manager.save_persistent_attributes()
