@@ -37,13 +37,11 @@
                         "{work_time}",
                         "ich arbeite heute für {work_time}",
                         "für {work_time} ",
-                        "Für {work_time}",
                         "Ich will heute {work_time} arbeiten",
                         "Ich will jetzt {work_time} arbeiten",
                         "Ich werde jetzt {work_time} arbeiten",
                         "Ich werde heute {work_time} arbeiten",
                         "{work_time} arbeiten",
-                        "{work_time}",
                         "Ich arbeite heute {work_time}",
                         "Ich arbeite heute {work_time} lang",
                         "{work_time} lang",
@@ -132,6 +130,23 @@
                     "name": "session_init",
                     "slots": [],
                     "samples": [
+                        "mach los",
+                        "starte",
+                        "starten",
+                        "beginne",
+                        "fange an",
+                        "anfangen",
+                        "beginnen",
+                        "beginne mit dem programm",
+                        "beginne mit der session",
+                        "session start",
+                        "session",
+                        "start das programm",
+                        "Starte das Programm",
+                        "start",
+                        "Starte die Session",
+                        "los geht's",
+                        "los gehts",
                         "Los"
                     ]
                 },
@@ -139,6 +154,20 @@
                     "name": "workout_explanation",
                     "slots": [],
                     "samples": [
+                        "bin bereit soweit",
+                        "bereit soweit",
+                        "bin soweit bereit",
+                        "soweit bereit",
+                        "bereit für das workout",
+                        "bin bereit für die nächste übung",
+                        "bin bereit für das workout",
+                        "bin soweit",
+                        "bin bereit",
+                        "ich bin bereit für das workout",
+                        "ich bin soweit",
+                        "ich bin bereit für die nächste übung",
+                        "bereit",
+                        "bescheid",
                         "ich bin bereit",
                         "Ich habe die Anleitung nicht verstanden",
                         "Wiederholen",
@@ -154,6 +183,11 @@
                     "name": "workout_init",
                     "slots": [],
                     "samples": [
+                        "fang verdammt nochmal an",
+                        "fang endlich an",
+                        "fang bitte an",
+                        "fang an",
+                        "fang jetzt an",
                         "es kann los gehen",
                         "ready",
                         "Es kann losgehen",
@@ -384,4 +418,4 @@
             }
         ]
     }
-  }
+}

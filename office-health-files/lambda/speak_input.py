@@ -82,8 +82,8 @@ i_spo_2 = [
 # speak_output variants for session_init
 
 si_spo_1 = [
-        "Deine Health Session beginnt in 20 Sekunden.",
-        "Deine Health Session beginnt gleich in 20 Sekunden."
+        "Deine Health Session beginnt in 10 Sekunden.",
+        "Deine Health Session beginnt gleich in 10 Sekunden."
         ]
 
 si_spo_2 = [
@@ -93,27 +93,24 @@ si_spo_2 = [
         ]
 
 si_spo_3 = [
-        "Steh auf, schau, ob du genügend Platz um dich herum frei hast und",
-        "Steh auf, überprüfe, ob du genügend Platz um dich herum frei hast und"
-        ]
+        "Auf geht’s!",
+        "Los geht's!",
+        # "Beweg deinen faulen Arsch!",
+        "Auf die Beine!",
+        "Hoch mit Dir!",
+        # "Jetzt kannst Du endlich deine müden Knochen bewegen!"
+        ] 
 
 si_spo_4 = [
+        "Steh auf, schau, ob du genügend Platz um dich herum hast und",
+        "Steh auf, überprüfe, ob du genügend Platz um dich herum hast und"
+        ]
+
+si_spo_5 = [
         "sag mir, wenn du bereit bist.",
         "teile mir mit, wenn du bereit bist.",
         "wenn Du bereit bist, sag einfach bereit."
         ]
-
-si_spo_5 = [
-        "Auf geht’s!",
-        "Aufstehen!",
-        "Steh auf!",
-        "Steh auf und mach Dich bereit!",
-        "Beweg deinen faulen Arsch!",
-        "Auf die Beine!",
-        "Los hoch mit Dir!",
-        "Jetzt kommt Schwung in die Bude!",
-        "Jetzt kannst Du endlich deine müden Knochen bewegen!"
-        ] 
 
 # speak_output variants for workout_explanation
 
@@ -140,7 +137,7 @@ wf_spo_3 = [
         "Ich melde mich bald wieder.",
         "Ich melde mich wieder, wenn es Zeit für deine nächste Health Break ist.",
         "Ich sage dir Bescheid, wenn die nächste Health Break ansteht.",
-        "Ich gebe dir wieder 20 Sekunden vor deiner nächsten Health Break Bescheid."
+        "Ich gebe dir wieder 10 Sekunden vor deiner nächsten Health Break Bescheid."
         ]    
 
 # speak_output variants for session_finish
