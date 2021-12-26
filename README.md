@@ -9,7 +9,7 @@ Schon einmal von folgenden Problemen beim alltäglichen Bildschirmarbeiten gehö
 - Konzentrationsstörungen 
 - Motivationsprobleme <br>
 
-Sehr wahrscheinlich schon! Mit dem Alexa Skill **Office Health** kann man diesen Problemen ganz einfach entgegen und vor beugen. <br>
+Sehr wahrscheinlich schon! Mit dem Alexa Skill **Office Health** kann man diesen Problemen ganz einfach entgegen wirken und vor beugen. <br>
 Der Voice Assistent **Office Health** hilft dabei genug Bildschirmpausen in den Arbeitsalltag zu integrieren, erinnert an diese Pausen und macht mit dem User zusammen geeignete Übungen, um ihn fit und gesund zu halten. Diese Übungen können sich dabei in vom User ausgewählten Schwierigkeitsgrade, welche auch _Sweat Modes_ genannt werden, unterscheiden. 
 Zudem hilf der Voice Assisent bei der Einteilung der Pausen, welche aber beliebig geändert werden können. <br>
 Es gibt zwar bereits einige Health Assisten, doch **Office Health** zeichnet besonders die Interaktion mit den _Coaches_ aus. Dabei können die Coaches vom User beliebig gewählt und gewechselt werden. Diese Coaches unterscheiden sich nicht nur im Ton, sondern auch in der Persönlichkeit. So soll dem User einen Anreiz geben werden, den Voice Assistenen regelmäßig zu nutzen und ein gesünderes und zufriedenes Leben zu führen.
