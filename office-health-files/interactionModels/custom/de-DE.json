@@ -147,7 +147,8 @@
                         "Starte die Session",
                         "los geht's",
                         "los gehts",
-                        "Los"
+                        "Los",
+                        "mitgeteilt"
                     ]
                 },
                 {
@@ -171,12 +172,15 @@
                         "ich bin bereit",
                         "Ich habe die Anleitung nicht verstanden",
                         "Wiederholen",
+                        "Wiederhole",
+                        "nochmal",
                         "Bitte wiederhole die Anleitung",
                         "Anleitung wiederholen",
                         "Kannst Du die Anleitung wiederholen",
                         "Ich habe es nicht verstanden",
                         "Ich hab sie nicht verstanden",
-                        "Nächste Übung"
+                        "Nächste Übung",
+                        "nochmal"
                     ]
                 },
                 {
@@ -207,7 +211,9 @@
                         "Ich will weiter machen",
                         "Ich will anfangen",
                         "Ich möchte anfangen",
-                        "Ich möchte weiter machen"
+                        "Ich möchte weiter machen",
+                        "beginne",
+                        "Starte die Übung"
                     ]
                 },
                 {
