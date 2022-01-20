@@ -179,9 +179,7 @@ class session_initHandler(AbstractRequestHandler):
         listifyExercise('sport', sports, r2)
         listifyExercise('stretch_two', stretches, r3)
         
-        speak_output = "<speak>" + spo_1[random.randrange(0, len(spo_1)-1)] + " <break time=\"10s\"/>" + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)] + "</speak>"
-
-        
+        speak_output = "<speak>" + spo_1[random.randrange(0, len(spo_1)-1)] + "<audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/>" + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)] + " " + spo_4[random.randrange(0, len(spo_4)-1)] + " " + spo_5[random.randrange(0, len(spo_5)-1)] + "</speak>"
 
         reprompt_output = "Sag ich bin bereit, wenn du bereit bist!"
 
@@ -319,7 +317,7 @@ class workout_finishHandler(AbstractRequestHandler):
         spo_3 = si.wf_spo_3
         
         # type: (HandlerInput) -> Response
-        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + " " + spo_3[random.randrange(0, len(spo_3)-1)]
+        speak_output = spo_1[random.randrange(0, len(spo_1)-1)] + " " + spo_2[random.randrange(0, len(spo_2)-1)] + "<audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/><audio src=\"soundbank://soundlibrary/foley/amzn_sfx_clock_ticking_long_01\"/>" + spo_3[random.randrange(0, len(spo_3)-1)]
 
         return (
             handler_input.response_builder

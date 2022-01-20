@@ -82,8 +82,8 @@ i_spo_2 = [
 # speak_output variants for session_init
 
 si_spo_1 = [
-        "Deine Health Session beginnt in 10 Sekunden.",
-        "Deine Health Session beginnt gleich in 10 Sekunden."
+        "Deine Health Session beginnt gleich!",
+        "Deine Health Session beginnt in wenigen Sekunden!"
         ]
 
 si_spo_2 = [
@@ -126,18 +126,18 @@ wf_spo_1 = [
             ]
 
 wf_spo_2 = [
-        "Du hast jetzt 1 Minute lang Zeit, dich zu erholen, bevor es weiter an die Arbeit geht.",
-        "Noch 1 Minute, dann geht es wieder an die Arbeit.",
-        "In einer Minute geht es wieder an die Arbeit.",
-        "In einer Minute arbeiten wir weiter.",
-        "In einer Minute wird weitergearbeitet."
+        "Du hast jetzt 20 Sekunden Zeit, dich zu erholen, bevor es weiter an die Arbeit geht.",
+        "Noch 20 Sekunden, dann geht es wieder an die Arbeit.",
+        "In 20 Sekunden geht es wieder an die Arbeit.",
+        "In 20 Sekunden arbeiten wir weiter.",
+        "In 20 Sekunden wird weitergearbeitet."
         ]
 
 wf_spo_3 = [
         "Ich melde mich bald wieder.",
         "Ich melde mich wieder, wenn es Zeit für deine nächste Health Break ist.",
         "Ich sage dir Bescheid, wenn die nächste Health Break ansteht.",
-        "Ich gebe dir wieder 10 Sekunden vor deiner nächsten Health Break Bescheid."
+        "Ich gebe dir wieder kurz vor deiner nächsten Health Break Bescheid."
         ]    
 
 # speak_output variants for session_finish
